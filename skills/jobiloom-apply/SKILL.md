@@ -9,9 +9,9 @@ Use the existing Jobiloom MCP and connected browser tools, such as Playwright MC
 
 ## Start with the profile and resume
 
-On every invocation, including the skill name with no accompanying request, read [the profile workflow](references/profile.md) and check readiness in the user's Jobiloom workspace. If the workspace is missing or is the plugin directory, ask for a separate workspace first. Otherwise, read the existing profile and verify that its resume file exists and is readable.
+On every invocation, including the skill name with no accompanying request, read [the profile workflow](references/profile.md), resolve the profile directory, and check readiness there. Follow its workspace restrictions before collecting personal information. Read the existing profile and verify that its resume file exists and is readable.
 
-If either is missing or incomplete, start or resume onboarding immediately. Ask for an accessible resume PDF or the next missing required detail. Explain that the profile and resume are needed before job work. Do not present a menu of capabilities or ask what the user wants to do before addressing setup. For example, in a fresh dedicated workspace, say "Let's set up your Jobiloom profile first. Attach your resume PDF or send its accessible file path. I'll extract your details for you to confirm. Your profile and resume will be saved in this workspace's .jobiloom/ folder unless you choose session-only use."
+If either is missing or incomplete, start or resume onboarding immediately. Ask for an accessible resume PDF or the next missing required detail. Explain that the profile and resume are needed before job work. Do not present a menu of capabilities or ask what the user wants to do before addressing setup. Tell the user the resolved profile directory and offer session-only use before saving personal data.
 
 Complete the readiness requirements in the profile workflow before searching, opening a job for a preview, drafting a cover letter, or applying. Search-only and standalone cover-letter requests also start with this check. If the user declines setup or cannot supply the resume, explain what is missing and wait. Session-only use still requires a readable resume and confirmed profile facts for the current session.
 
@@ -73,7 +73,7 @@ If CAPTCHA, login, an assessment, or another obstacle requires the user's action
 
 If the user requests a cover letter or the form requires one, draft it from the selected job, confirmed facts, and any supplied template. Ask for missing facts rather than inventing qualifications or personal claims. An optional cover letter can remain empty unless requested.
 
-Keep a supplied reusable template separate from the current job's letter. Save the current draft as `.jobiloom/cover-letter.txt` in the profile workspace. For session-only use, follow the temporary-file rules in the profile workflow. Tailor the company, role, and relevant experience for each application rather than reusing the previous letter unchanged.
+Keep a supplied reusable template separate from the current job's letter. Save the current draft as `cover-letter.txt` directly in the resolved profile directory. For session-only use, follow the temporary-file rules in the profile workflow. Tailor the company, role, and relevant experience for each application rather than reusing the previous letter unchanged.
 
 For a text field, enter the letter through browser tools. For a file field, inspect accepted formats. Use the actual text file if accepted, or available document tools to create and inspect an accepted PDF or DOCX. Renaming an extension is not conversion. If the required format cannot be produced, request a suitable file and wait. Verify the visible attachment before submitting.
 

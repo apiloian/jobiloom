@@ -6,13 +6,13 @@ Codex and Claude Code use the same [agent skill](skills/jobiloom-apply/SKILL.md)
 
 Title search selects the first result with a usable link. It does not check location, seniority, or whether you meet the job requirements. Supply a job URL when you want a specific vacancy.
 
-## Open an applicant workspace
+## Open your .jobiloom folder
 
 Use a local agent client with Node.js and a browser available. Create a workspace outside the plugin repository or installation folder:
 
 ```sh
-mkdir -p ~/jobiloom-workspace
-cd ~/jobiloom-workspace
+mkdir -p ~/.jobiloom
+cd ~/.jobiloom
 ```
 
 Choose your client below. Skip installation or connection commands for components you already have configured.
@@ -59,7 +59,16 @@ On first use, the agent requests a resume PDF and asks you to confirm your name,
 
 A readable resume PDF and confirmed name and email are required before searches, previews, cover letters, and applications, including session-only use. A ready profile is reused. A missing or unreadable resume triggers a replacement request. The agent continues your original request after setup, or asks for a job title or link.
 
-Saved profiles and document copies live in `.jobiloom/` in your applicant workspace. These are local files without automatic encryption or cross-device sync. Reuse the same workspace in both clients. Session-only use avoids saving a profile or durable document copies. Client and browser tools can retain their own session artifacts.
+Saved profiles and document copies live directly in this folder:
+
+```text
+~/.jobiloom/
+  profile.json
+  resume.pdf
+  cover-letter.txt
+```
+
+The agent creates the cover-letter file when needed. These are local files without automatic encryption or cross-device sync. Reuse the same folder in both clients. Session-only use avoids saving a profile or durable document copies. Client and browser tools can retain their own session artifacts.
 
 Ask Jobiloom to show or correct saved information, replace your resume or template, or delete the saved profile. Original supplied documents remain separate. See the [profile workflow](skills/jobiloom-apply/references/profile.md) for the data format and storage rules.
 

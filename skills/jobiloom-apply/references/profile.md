@@ -1,12 +1,14 @@
 # Manage the applicant profile
 
-## Choose the workspace
+## Choose the profile directory
 
-Use `.jobiloom/` inside the user's chosen Jobiloom workspace. Default to the current workspace if it is separate from the plugin's source repository and installed plugin directory. If running inside either plugin directory, ask the user to open or name a separate workspace before collecting personal information. Reuse that same workspace in future sessions and both clients. Do not silently search other folders for profiles.
+Resolve the profile directory once from the user's chosen workspace. If the workspace itself is named `.jobiloom`, use it directly. Otherwise, use its `.jobiloom/` subdirectory. Store `profile.json`, `resume.pdf`, templates, and generated letters directly in the resolved profile directory. Never append another `.jobiloom/` to it.
+
+Default to the current workspace if it is separate from the plugin's source repository and installed plugin directory. If running inside either plugin directory, ask the user to open or name a separate workspace before collecting personal information. Reuse the same profile directory in future sessions and both clients. Do not silently search other folders for profiles.
 
 Use normal filesystem tools to create and update the directory and files. A skill does not grant filesystem permissions. If access is denied, explain the blocked path and request an allowed workspace or the client's normal directory permission. Do not weaken sandbox settings, change global client configuration, or silently move the profile.
 
-Before saving personal data, tell the user the directory and that the profile and documents persist locally for future applications. Offer session-only use if they do not want persistence. Session-only use must not create or update a profile or durable document copies. Use only files and facts supplied in that session. Place requested cover-letter drafts in a user-approved temporary location instead of `.jobiloom/`.
+Before saving personal data, tell the user the directory and that the profile and documents persist locally for future applications. Offer session-only use if they do not want persistence. Session-only use must not create or update a profile or durable document copies. Use only files and facts supplied in that session. Place requested cover-letter drafts in a user-approved temporary location instead of the profile directory.
 
 ## Onboard once
 
@@ -17,7 +19,7 @@ A profile is ready when the user has confirmed their name and email and a resume
 1. Read an existing `profile.json` before asking questions and check its saved resume. If the profile or resume is missing, request a resume PDF attachment or accessible file path. Reuse a readable saved resume when completing a partial profile. The browser must have access to the actual file for applications, not only extracted chat text. If an attachment is inaccessible, ask for an accessible file. Do not invent or recreate the resume from memory.
 2. Read the resume and extract the available name, contact details, links, employment, and education. If the PDF cannot be read, request a readable copy or ask for missing facts.
 3. Present the name, email, and resume path together for confirmation. Ask for a missing name or email in the same exchange. Include the storage location and session-only choice if not already settled. Wait for confirmed name and email before marking the profile ready. Leave other facts unknown until a form requires them or the user requests profile customization. Do not add questions about demographics, cover-letter templates, or remembering future answers to this setup exchange.
-4. For persistent use, save confirmed facts to `profile.json` and copy the actual resume to `resume.pdf` inside `.jobiloom/` without removing the original. Leave `remember_new_answers` as `null` unless the user has chosen a preference. Save a supplied template as `cover-letter-template` with its original extension. Verify readable files and valid JSON, then report the saved location. For session-only use, retain confirmed facts in the conversation and use the supplied resume without durable copies. Once ready, continue the original request. If the skill was invoked alone, ask for a job title or link.
+4. For persistent use, save confirmed facts to `profile.json` and copy the actual resume to `resume.pdf` in the profile directory without removing the original. If the supplied resume is already that destination file, reuse it without copying it onto itself. Leave `remember_new_answers` as `null` unless the user has chosen a preference. Save a supplied template as `cover-letter-template` with its original extension, reusing it if already at that destination. Verify readable files and valid JSON, then report the saved location. For session-only use, retain confirmed facts in the conversation and use the supplied resume without durable copies. Once ready, continue the original request. If the skill was invoked alone, ask for a job title or link.
 
 Create the directory with owner-only access and data files with owner-only read/write access where the operating system supports it. Save applicant facts and documents, not credentials, browser cookies, or session tokens. Do not copy the profile into the plugin package or submit it to a form.
 
@@ -48,7 +50,7 @@ Use this versioned shape. Initialize unknown scalar values as `null` and collect
 
 Store education entries with institution, degree, field of study, and dates when known. Store employment entries with employer, title, dates, and confirmed experience. Preserve compound names and international contact details as supplied instead of guessing a split or format.
 
-When supplied, set `cover_letter_template` to an object with `file` pointing to its copied filename. Keep stored document paths relative to `.jobiloom/` and limited to files inside it. Resolve the absolute file path when a browser upload requires one.
+When supplied, set `cover_letter_template` to an object with `file` pointing to its saved filename. Keep stored document paths relative to the profile directory and limited to files inside it. Resolve the absolute file path when a browser upload requires one.
 
 For each reusable answer, store `question`, `answer`, `scope`, `source`, and `confirmed_at`. Store `scope` as an object with `country`, `company`, and `role`, using `null` for dimensions that do not restrict the answer. Authorization for one country must name that country. Demographic disclosure preferences belong here too. Use `source: "user"` and the actual confirmation date. Employer-specific answers must name the employer and must not be applied elsewhere.
 
