@@ -6,21 +6,21 @@ The plugin contains one shared [agent skill](skills/jobiloom-apply/SKILL.md) for
 
 ## Connect the tools
 
-Use a local agent client with Node.js and a browser available. Supply the confirmed Jobiloom MCP endpoint. For local development, run the existing Jobiloom web app separately and use `http://localhost:3000/api/mcp`.
+Use a local agent client with Node.js and a browser available. Use the Jobiloom MCP endpoint at `https://jobiloom.com/api/mcp`. For local development, run the existing Jobiloom web app separately and use `http://localhost:3000/api/mcp`.
 
-Replace `https://YOUR-JOBILOOM-HOST/api/mcp` below with your endpoint. Do not add a second connection if these tools are already configured.
+Do not add a second connection if these tools are already configured.
 
 For Codex:
 
 ```sh
-codex mcp add jobiloom --url https://YOUR-JOBILOOM-HOST/api/mcp
+codex mcp add jobiloom --url https://jobiloom.com/api/mcp
 codex mcp add playwright -- npx -y @playwright/mcp@latest --isolated
 ```
 
 For Claude Code, run these commands from the workspace where you will apply:
 
 ```sh
-claude mcp add --transport http jobiloom https://YOUR-JOBILOOM-HOST/api/mcp
+claude mcp add --transport http jobiloom https://jobiloom.com/api/mcp
 claude mcp add playwright -- npx -y @playwright/mcp@latest --isolated
 ```
 
