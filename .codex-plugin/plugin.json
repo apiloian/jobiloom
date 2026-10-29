@@ -1,0 +1,11 @@
+{
+  "name": "jobiloom",
+  "version": "0.2.0",
+  "description": "Onboard once, reuse your applicant profile, prepare cover letters, and apply through Greenhouse, Lever, Ashby, or custom company forms.",
+  "skills": "./skills/",
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/jobiloom-apply/SKILL.md"
+    }
+  }
+}

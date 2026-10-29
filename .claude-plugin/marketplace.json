@@ -1,0 +1,11 @@
+{
+  "name": "jobiloom",
+  "owner": { "name": "Jobiloom" },
+  "plugins": [
+    {
+      "name": "jobiloom",
+      "source": "./",
+      "description": "Reuse an applicant profile and cover letters to apply through Greenhouse, Lever, Ashby, or custom company forms."
+    }
+  ]
+}
